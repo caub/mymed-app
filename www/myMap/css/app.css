@@ -1,0 +1,118 @@
+html, body {
+   height: 100%;
+   width: 100%;
+}
+
+body {
+	font: 14px/18px "Helvetica Neue",Arial,Helvetica,sans-serif;
+	margin: 0;
+	z-index: 0;
+	text-align: center;
+}
+
+p {
+	margin: 0 0 5px;
+}
+
+.main {
+	margin: auto;
+	max-width: 600px;
+	height: 100%;
+	padding: 1em;
+	-moz-box-flex: 1;
+	-webkit-box-flex: 1;
+	box-flex: 1;
+}
+
+.flexCenter, .flexCenterVertical {
+	display: -webkit-box;
+    -webkit-box-pack: center;
+    -webkit-box-align: center;
+    
+    display: -moz-box;
+    -moz-box-pack: center;
+    -moz-box-align: center;
+
+	display: box;
+    flex-pack: center;
+    flex-align: center;
+}
+.flexCenterVertical {
+	-webkit-box-orient: vertical;
+    -moz-box-orient: vertical;
+    box-orient: vertical;
+}
+
+#notification {
+	width: 100%;
+	text-align: center;
+	position: relative;
+	background-color: #ffa;
+}
+
+.flex2 { 	
+    -moz-box-flex: 2;
+	-webkit-box-flex: 2;
+	box-flex: 2;
+}
+
+.flex1 {
+    -moz-box-flex: 1;
+	-webkit-box-flex: 1;
+	box-flex: 1;
+}
+
+#map_canvas {
+	height: 100%;
+	top: 40px;
+}
+#map_label {
+	position: absolute;
+	right: 1em;
+	top: 46px;
+	padding: 5px;
+	width: 218px;
+	background: #fff;
+}
+
+#jqt.fullscreen #home .info {
+	display: none;
+}
+
+div#jqt #about {
+	color: #333;
+	font-size: 13px;
+	text-align: center;
+	background: #f6f6f8;
+}
+
+div#jqt #about p {
+	margin-bottom: 8px;
+}
+
+div#jqt #about a {
+	color: #444;
+	font-weight: bold;
+	text-decoration: none;
+}
+
+body > *, .hidden {
+	display: none;
+}
+.current {
+	display: block;
+}
+
+header {
+	padding: 0;
+	height: 40px;
+	width: 100%;
+	text-align:center;
+	background-color: #23658b;
+	background: -moz-linear-gradient(top, #23658b 0%, #1c506e 100%);
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #23658b), color-stop(100%, #1c506e));
+	background: -webkit-linear-gradient(top, #23658b 0%, #1c506e 100%);
+	background: -o-linear-gradient(top, #23658b 0%, #1c506e 100%);
+	background: -ms-linear-gradient(top, #23658b 0%, #1c506e 100%);
+	background: linear-gradient(top, #23658b 0%, #1c506e 100%);
+}

@@ -1,0 +1,19 @@
+{
+
+	"0": {
+		"default": [],
+		"login": ["read", "create"],
+		"test": ["read"],
+		"registerValidate": ["read"],
+		"fallback": "errorAuthentication"
+	},
+	"1": {
+		"default": ["read","create","updateHis","deleteHis"],
+		"fallback": "error"
+	},
+	"2": {
+		"default": ["read","create","updateHis","update","deleteHis","delete","updateRole"],
+		"fallback": "error"
+	}
+
+}

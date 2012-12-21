@@ -1,0 +1,9 @@
+{
+
+	"routeExpression": "@/(?P<app>\\w+)(:?/(?P<page>\\w+)(:?/(?P<id>[^/]+))?)?@",
+	
+	"defaultMethod": "read",
+	"defaultPage": "main"
+
+
+}
