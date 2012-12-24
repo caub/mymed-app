@@ -20,12 +20,10 @@ var pageDefault = "home";
 
 var source;
 
+window.onload = init;
+window.onhashchange = locationHashChanged;
+
 function init() {
-	
-	//overrides app.js
-	window.document.body.onhashchange = locationHashChanged;
-	locationHashChanged();
-	
 	
 	if ('EventSource' in window){
 		source = new EventSource(/*backend+*/ '/inbox/stream'); //native EventSource don't support CORS, have to use https://github.com/Yaffle/EventSource for that
@@ -132,7 +130,7 @@ function init() {
 	//initial req
 	updateRectangle();
 	getPOIs();
-
+	locationHashChanged();
 	
 	if (navigator.geolocation) {
 		navigator.geolocation.watchPosition(displayPosition, displayError, {enableHighAccuracy : true, timeout: 5000, maximumAge: 0});
@@ -142,7 +140,7 @@ function init() {
 
 function popup(el){
 	if (location.hash === el.href.substr(el.href.indexOf('#'))){ //trigger hashchange manually
-		$('body').trigger('hashchange');
+		locationHashChanged();
 	}
 }
 
@@ -278,8 +276,9 @@ function getDetails(id){
 			if (res.status==200){
 				var item = res.dataObject.details;
 				var infowindow = new google.maps.InfoWindow({
-					content : "<p>"+decodeURIComponent(item.text||"vide...")+"</p>"+
-					 (item.author?"<p>"+item.author+"</p>":"")
+					content: (item.author ? "<p><b>"+item.author+"</b></p>" : "") +
+								"<p>" + decodeURIComponent(item.text||"vide...")+"</p>"+
+								"<p><a href='#' onclick='delPOI(\""+id+"\");'>delete</a></p>"
 				});
 				if (!(id in markers)){
 					addMarker(item.lat, item.lng, item.type, item.id, item.content);
@@ -318,7 +317,11 @@ function addMarker(lat, lng, type, id, content){
 	});
 	//infowindow.open(map, marker);
 	google.maps.event.addListener(marker, 'click', function(event) {
-		infowindow.open(map, marker);
+		if (location.hash === '#?id='+id){
+			locationHashChanged(); //manual trigger
+		} else {
+			location.hash = '#?id='+id;
+		}
 	});
 	
 	markers[id] = marker;

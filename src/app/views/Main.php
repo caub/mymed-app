@@ -14,6 +14,7 @@ class Main extends Base {
 		$request = new BackendRequest;
 		$responsejSon = $request->read("v2/ProfileRequestHandler", array('id' => $_SESSION['user']->id) );
 		$responseObject = json_decode($responsejSon);
+		//debug_r($responseObject);
 		if ($responseObject->status==200){
 			$data = (array) $responseObject->dataObject->user;
 		}

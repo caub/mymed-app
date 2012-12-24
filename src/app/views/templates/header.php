@@ -26,5 +26,5 @@
 
 </head>
 		
-<body onload="init()">
+<body>
 
