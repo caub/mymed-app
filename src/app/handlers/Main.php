@@ -1,6 +1,6 @@
 <?php 
 
-namespace app\views;
+namespace app\handlers;
 
 use lib\database\BackendRequest;
 use app\views\Utils;
@@ -19,7 +19,7 @@ class Main extends Base {
 			$data = (array) $responseObject->dataObject->user;
 		}
 
-		Utils::load( array('map', 'profile'), $data, $other);
+		$this->loadTemplates( array('map', 'profile'), $data, $other);
 		
 	}
 	

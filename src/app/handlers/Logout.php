@@ -1,6 +1,6 @@
 <?php 
 
-namespace app\views;
+namespace app\handlers;
 
 use lib\database\BackendRequest;
 use app\views\Utils;
@@ -13,11 +13,13 @@ class Logout extends Base {
 		
 		$request = new BackendRequest();
 		$responsejSon = $request->delete("v2/SessionRequestHandler", $data);
-		
+		session_unset($_SESSION['user']);
 		session_destroy();
-		unset($_SESSION['user']);
+		
+		
+		debug("efef");
 				
-		Utils::load( array('login', 'register', 'about'), $data);
+		$this->loadTemplates( array('login', 'register', 'about'), $data);
 		
 	}
 	

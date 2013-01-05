@@ -1,7 +1,7 @@
 myMap
 =========
 
-A minimal REST web application<sup>[wiki](https://github.com/auburtin/myMap/wiki)</sup> for **publishing** content on a geographic Map, and interactively **subscribing** to particular locations or keywords
+A small REST web application<sup>[wiki](https://github.com/cyrilaub/myMap/wiki)</sup> with a geographic Map
 
 
 installation

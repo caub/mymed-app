@@ -1,6 +1,6 @@
 <?php 
 
-namespace app\views;
+namespace app\handlers;
 
 use lib\database\BackendRequest;
 use app\views\Utils;
@@ -24,7 +24,7 @@ class RegisterValidate extends Base {
 		} else {
 			$other['notification'] = $responseObject->description;
 		}
-		Utils::load( array('login', 'register', 'about'), $data, $other);
+		$this->loadTemplates( array('login', 'register', 'about'), $data, $other);
 		
 	}
 	

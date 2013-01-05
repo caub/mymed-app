@@ -1,6 +1,6 @@
 <?php 
 
-namespace app\views;
+namespace app\handlers;
 
 use lib\database\BackendRequest;
 use app\views\Utils;
@@ -11,7 +11,11 @@ class Login extends Base {
 
 	function read( $data = array(), $other = array() ) {
 		debug('read');
+		debug_r($_SESSION);
 		if ($_SERVER['REQUEST_METHOD'] == "POST") { //Auth attempt
+			
+			debug('read POST LOGIN');
+			
 			if ( !empty($data['password']) ){
 				$data['login']	= trim($data['login']);
 				$data['password']	= hash("sha512", $data['password']); //at least salt..
@@ -32,21 +36,20 @@ class Login extends Base {
 					debug_r($responseObject);
 					if ($responseObject->status==200){
 						$_SESSION['user'] = (object) array_map('trim', (array) $responseObject->dataObject->user);
-						$_SESSION['accessControl'] = array('read', 'create', 'update', 'delete');
 						header("Location: /".APP_NAME);
 						exit();
 					}
 			
 				}
 				$other['notification'] = 'fail!';
-				Utils::load( array('login', 'register', 'about'), $data, $other);
+				$this->loadTemplates( array('login', 'register', 'about'), $data, $other);
 			} else {
 				$other['notification'] = 'password..';
-				Utils::load( array('login', 'register', 'about'), $data, $other);
+				$this->loadTemplates( array('login', 'register', 'about'), $data, $other);
 			}
 		} else {
 			debug('efef');
-			Utils::load( array('login', 'register', 'about'), $data);
+			$this->loadTemplates( array('login', 'register', 'about'), $data);
 		}
 		
 	}
@@ -55,12 +58,12 @@ class Login extends Base {
 		debug('create');
 		if ( empty($data['password']) || empty($data['password']) || empty($data['password'])){
 			$other['notification'] = 'no empty fields please';
-			Utils::load( array('login', 'register', 'about'), $data, $other);
+			$this->loadTemplates( array('login', 'register', 'about'), $data, $other);
 		}
 		
 		else if ($data['password']!==$data['confirm'] ){
 			$other['notification'] = '!=';
-			Utils::load( array('login', 'register', 'about'), $data, $other);
+			$this->loadTemplates( array('login', 'register', 'about'), $data, $other);
 		}
 	
 		else { //Register attempt
@@ -96,7 +99,7 @@ class Login extends Base {
 			} else {
 				$other['notification'] = $responseObject->description;
 			}
-			Utils::load( array('login', 'register', 'about'), $data, $other);
+			$this->loadTemplates( array('login', 'register', 'about'), $data, $other);
 		}
 	
 	

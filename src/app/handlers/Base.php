@@ -1,6 +1,6 @@
 <?php 
 
-namespace app\views;
+namespace app\handlers;
 
 
 class Base {
@@ -25,6 +25,19 @@ class Base {
 	}
 	function error ( $data){
 		$this->read($data, array('notification'=>'sorry but not authorized'));
+	}
+	
+	
+	/* load html templates with handlers variables */
+	function loadTemplates($templatesName, $data = array(), $other = array()){
+	
+		//include __DIR__ . '/templates/header.php';
+		include __DIR__ . '/../templates/header.php';
+		foreach ($templatesName as $templateName){
+			include __DIR__ . '/../templates/' .$templateName. '.php';
+		}
+		include __DIR__ . '/../templates/footer.php';
+		exit();
 	}
 	
 	

@@ -26,7 +26,7 @@ window.onhashchange = locationHashChanged;
 function init() {
 	
 	if ('EventSource' in window){
-		source = new EventSource(/*backend+*/ '/inbox/stream'); //native EventSource don't support CORS, have to use https://github.com/Yaffle/EventSource for that
+		/*source = new EventSource( '/inbox/stream'); //native EventSource don't support CORS, have to use https://github.com/Yaffle/EventSource for that
 		source.onmessage = function(e) {
 			// XSS in chat is fun
 			entry = JSON.parse(e.data);
@@ -50,9 +50,9 @@ function init() {
 			else{
 				//alert('subscribed');
 			}
-		};
+		};*/
 		
-		source2 = new EventSource(/*backend+*/ '/mymed_backend/notifications'); //native EventSource don't support CORS, have to use https://github.com/Yaffle/EventSource for that
+		source2 = new EventSource(/*backend+*/ '/backend/notifications'); //native EventSource don't support CORS, have to use https://github.com/Yaffle/EventSource for that
 		source2.onmessage = function(e) {
 			// XSS in chat is fun
 			entry = JSON.parse(e.data);

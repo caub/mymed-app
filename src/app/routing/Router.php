@@ -31,16 +31,14 @@ class Router {
 		
 		$authorizedMethods = array_key_exists($viewName, $accessControl)? $accessControl[$viewName]:$accessControl['default'];
 		
-		$viewName = 'app\\views\\' . ucwords($viewName);
+		$viewName = 'app\\handlers\\' . ucwords($viewName);
 		$view = new $viewName;
-		debug($viewName);
-		debug_r($authorizedMethods);
-		debug_r($accessControl['fallback']);
-		$ac = new \app\accesscontrol\Main($view, $authorizedMethods, $accessControl['fallback']);
+
+		$ac = new \app\accesscontrol\Ac($view, $authorizedMethods, $accessControl['fallback']);
 
 		//call it
 		try{
-			call_user_func(
+			return call_user_func(
 				array( $ac, $method ),
 				$_REQUEST
 			);
