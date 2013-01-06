@@ -1,7 +1,7 @@
 myMap
 =========
 
-A small REST web application<sup>[wiki](https://github.com/cyrilaub/myMap/wiki)</sup> with a geographic Map
+A small web application example <sup>[wiki](https://github.com/cyrilaub/myMap/wiki)</sup> with geographic blogging
 
 
 installation
